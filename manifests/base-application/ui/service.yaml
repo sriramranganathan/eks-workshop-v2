@@ -9,8 +9,12 @@ metadata:
     app.kubernetes.io/component: service
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/created-by: eks-workshop
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - port: 80
       targetPort: http
